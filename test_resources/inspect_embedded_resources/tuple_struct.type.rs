@@ -1,0 +1,1 @@
+struct Au(u32, u32);
