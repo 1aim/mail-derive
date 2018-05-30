@@ -19,7 +19,7 @@ use syn_utils::is_empty_type;
 
 const ATTR_NAME_SPACE: &str = "mail";
 
-#[proc_macro_derive(InspectEmbeddedResources)]
+#[proc_macro_derive(InspectEmbeddedResources, attributes(mail))]
 pub fn inspect_embedded_resource_derive(input: rust::TokenStream) -> rust::TokenStream {
     let input = syn::parse(input).unwrap();
     let new_tokens = impl_inspect_embedded_resource(&input);
