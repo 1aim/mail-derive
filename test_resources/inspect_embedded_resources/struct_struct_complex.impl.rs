@@ -1,5 +1,5 @@
 impl InspectEmbeddedResources for A {
-    fn inspect_resources(&self, visitor: &mut impl FnMut(&Embedded)) {
+    fn inspect_resources(&self, visitor: &mut FnMut(&Embedded)) {
         #[allow(unused_variables)]
         match self {
             &A { ref f1, ref fa, ref fe, ref f2, } => {
@@ -9,7 +9,7 @@ impl InspectEmbeddedResources for A {
             }
         }
     }
-    fn inspect_resources_mut(&mut self, visitor: &mut impl FnMut (&mut Embedded)) {
+    fn inspect_resources_mut(&mut self, visitor: &mut FnMut (&mut Embedded)) {
         #[allow(unused_variables)]
         match self {
             &mut A { ref mut f1, ref mut fa, ref mut fe, ref mut f2, } => {

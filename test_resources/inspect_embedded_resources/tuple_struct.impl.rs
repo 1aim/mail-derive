@@ -1,5 +1,5 @@
 impl InspectEmbeddedResources for Au {
-    fn inspect_resources(&self, visitor: &mut impl FnMut(&Embedded)) {
+    fn inspect_resources(&self, visitor: &mut FnMut(&Embedded)) {
         #[allow(unused_variables)]
         match self {
             &Au(ref f0, ref f1, ) => {
@@ -8,7 +8,7 @@ impl InspectEmbeddedResources for Au {
             }
         }
     }
-    fn inspect_resources_mut(&mut self, visitor: &mut impl FnMut (&mut Embedded)) {
+    fn inspect_resources_mut(&mut self, visitor: &mut FnMut (&mut Embedded)) {
         #[allow(unused_variables)]
         match self {
             &mut Au(ref mut f0, ref mut f1, ) => {

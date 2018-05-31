@@ -35,10 +35,10 @@ fn impl_inspect_embedded_resource(ast: &syn::DeriveInput) -> impl ToTokens + Siz
         impl #impl_generics InspectEmbeddedResources for #name #ty_generics
             #where_clause
         {
-            fn inspect_resources(&self, visitor: &mut impl FnMut(&Embedded)) {
+            fn inspect_resources(&self, visitor: &mut FnMut(&Embedded)) {
                 #tokens_impl
             }
-            fn inspect_resources_mut(&mut self, visitor: &mut impl FnMut(&mut Embedded)) {
+            fn inspect_resources_mut(&mut self, visitor: &mut FnMut(&mut Embedded)) {
                 #tokens_impl_mut
             }
         }
