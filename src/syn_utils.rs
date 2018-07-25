@@ -99,14 +99,14 @@ pub fn meta_list_is_inspect_skip(mlist: &syn::MetaList) -> bool {
 }
 
 
-/// returns true if any attribute is `#[mail(inspect_skip)]`
+/// Returns true if any attribute is `#[mail(inspect_skip)]`.
 pub fn is_skipped(attrs: &Vec<syn::Attribute>) -> bool {
     check_mail_attr(attrs, meta_list_is_inspect_skip)
         .into_iter()
         .any(|v| v)
 }
 
-/// returns a tuple of two paths/functions if a `#[mail(inspect_with="(path1, path2)")]` is given
+/// Returns a tuple of two paths/functions if a `#[mail(inspect_with="(path1, path2)")]` is given.
 pub fn use_alternate_function(attrs: &Vec<syn::Attribute>)
     -> Option<(syn::ExprPath, syn::ExprPath)>
 {

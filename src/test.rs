@@ -1,7 +1,7 @@
-//! as proc_macro crates can't export this the tests are here instead of in `"./tests"
-//TODO see if custom targets can be used to have tests in tests (i.e. have a different
-// target which is not a proc_macro)
-//TODO maybe use custom dynamic test runner
+//! As proc_macro crates can't export this the tests are here instead of in `"./tests"
+// TODO: See if custom targets can be used to have tests in tests (i.e. have a different
+//       target which is not a proc_macro).
+// TODO: Maybe use custom dynamic test runner.
 
 use std::path::Path;
 use std::str::FromStr;
