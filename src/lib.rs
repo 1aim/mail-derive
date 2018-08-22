@@ -4,6 +4,9 @@
 //! derive which allows deriving the `InspectEmbeddedResource`
 //! trait from the `mail-template` (sub-)crate.
 //!
+//! **Note this crate will be re-exported through the mail
+//!  facade in the same way as the other mail-* crates are.**
+//!
 //! # InspectEmbeddedResource
 //!
 //! Implements `InspectEmbeddedResource` by forwarding calls to it's
@@ -29,9 +32,46 @@
 //!
 //! **Type Attributes**: None
 //!
-//! **Enum Variant Attributes**: None
+//! **Enum Variant Attributes**:
+//!
+//! - `inspect_skip`, skip over all fields in this enum variant
+//!
+//! ## Example
+//!
+//! ```
+//! extern crate mail_template;
+//! #[macro_use]
+//! extern crate mail_derive;
+//!
+//! use mail_template::{Embedded, InspectEmbeddedResources};
 //!
 //!
+//! // Just take this as any kind of type.
+//! type SomeRandomType = u32;
+//!
+//! // Let's assume this is imported from another crate.
+//! struct TypeNotImplTrait(SomeRandomType);
+//!
+//! #[derive(InspectEmbeddedResources)]
+//! enum A {
+//!    VariA,
+//!    VariB(SomeRandomType, #[mail(inspect_skip)] TypeNotImplTrait),
+//!    VariC {
+//!        f1: SomeRandomType,
+//!        #[mail(inspect_with="(inspect, inspect_mut)")]
+//!        f2: TypeNotImplTrait
+//!    }
+//! }
+//!
+//! fn inspect(me: &TypeNotImplTrait, visitor: &mut FnMut(&Embedded)) {
+//!     me.0.inspect_resources(visitor)
+//! }
+//! fn inspect_mut(me: &mut TypeNotImplTrait, visitor: &mut FnMut(&mut Embedded)) {
+//!     me.0.inspect_resources_mut(visitor)
+//! }
+//!
+//! # fn main() {}
+//! ```
 //!
 //!
 #![recursion_limit = "128"]
