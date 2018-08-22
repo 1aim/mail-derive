@@ -10,6 +10,7 @@ impl InspectEmbeddedResources for A {
                 f1.inspect_resources(visitor);
                 afn(f2, visitor);
             },
+            _ => {}
         }
     }
     fn inspect_resources_mut(&mut self, visitor: &mut FnMut(&mut Embedded)) {
@@ -23,6 +24,7 @@ impl InspectEmbeddedResources for A {
                 f1.inspect_resources_mut(visitor);
                 afn_mut(f2, visitor);
             },
+            _ => {}
         }
     }
 }

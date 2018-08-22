@@ -83,8 +83,8 @@ fn impl_inspect_embedded_resource(ast: &syn::DeriveInput) -> impl ToTokens + Siz
 
 
 fn impl_inspect(name: &syn::Ident, data: &syn::Data) -> (impl ToTokens, impl ToTokens) {
-    let mut token_impl = TokenStream::empty();
-    let mut token_impl_mut = TokenStream::empty();
+    let mut token_impl = TokenStream::new();
+    let mut token_impl_mut = TokenStream::new();
 
     if is_empty_type(data) {
         return (quote! {}, quote! {})

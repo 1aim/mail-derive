@@ -149,10 +149,10 @@ pub struct FieldImpl {
 
 
 pub fn impl_parts_for_fields(fields: &syn::Fields) -> FieldImpl {
-    let mut field_ref = TokenStream::empty();
-    let mut field_ref_mut = TokenStream::empty();
-    let mut field_usage = TokenStream::empty();
-    let mut field_usage_mut = TokenStream::empty();
+    let mut field_ref = TokenStream::new();
+    let mut field_ref_mut = TokenStream::new();
+    let mut field_usage = TokenStream::new();
+    let mut field_usage_mut = TokenStream::new();
 
     for (idx, field) in fields.iter().enumerate() {
         let fname = field.ident.as_ref()

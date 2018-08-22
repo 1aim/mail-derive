@@ -14,11 +14,18 @@ pub fn impl_inspect(
     token_impl: &mut TokenStream,
     token_impl_mut: &mut TokenStream
 ) {
+    let mut add_default_branch = false;
     for variant in a_enum.variants.iter() {
         if let Some((new_tokens, new_tokens_mut)) = impl_variant_inspect(name, variant) {
             new_tokens.to_tokens(token_impl);
             new_tokens_mut.to_tokens(token_impl_mut);
+        } else {
+            add_default_branch = true;
         }
+    }
+    if add_default_branch {
+        (quote!{ _ => {} }).to_tokens(token_impl);
+        (quote!{ _ => {} }).to_tokens(token_impl_mut);
     }
 }
 
